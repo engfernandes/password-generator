@@ -24,7 +24,7 @@ export default {
   height: 70px;
   justify-content: space-between;
   padding: 16px;
-  position: static;
+  position: fixed;
   top: 0%;
   width: 100%;
 

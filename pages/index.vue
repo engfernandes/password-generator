@@ -1,65 +1,72 @@
 <template>
-  <Header />
-  <main class="content">
-    <div class="left-content">
-      <Typography
-        type="title"
-        text="Welcome to the Password Generator by SecurePass"
-        id="left-title"
-      />
-      <Typography
-        type="body"
-        text="This is a free tool, our mission is to help you generate secure passwords and provide them in a unique way to avoid leaks. If you want to help us maintain this project and its improvements, visit our donation page."
-        id="left-text"
-      />
-    </div>
-    <div class="right-content">
-      <Typography type="title" text="Generate Password" id="right-title" />
-      <Typography
-        type="caption"
-        text="Below you can generate your passwords according to the selected options, you can generate up to 3 passwords at once. Make good use of our tool!"
-        id="right-caption"
-      />
-      <section class="options-section">
+  <div class="app">
+    <Header />
+    <main class="content">
+      <div class="left-content">
+        <Typography
+          type="title"
+          text="Welcome to the Password Generator by SecurePass"
+          id="left-title"
+        />
         <Typography
           type="body"
-          text="Fill in the information below and click generate password:"
+          text="This is a free tool, our mission is to help you generate secure passwords and provide them in a unique way to avoid leaks. If you want to help us maintain this project and its improvements, visit our donation page."
+          id="left-text"
+        />
+      </div>
+      <div class="right-content">
+        <Typography type="title" text="Generate Password" id="right-title" />
+        <Typography
+          type="caption"
+          text="Below you can generate your passwords according to the selected options, you can generate up to 3 passwords at once. Make good use of our tool!"
           id="right-caption"
         />
-        <div class="switch-group">
-          <InputNumber
-            :min-value="1"
-            :max-value="3"
-            v-model:value="numberPasswordsValue"
-            @change="handleChangeNumberPasswords"
-          />
-          <Typography type="body" text="Number of Passwords" />
-        </div>
-        <div class="switch-group">
-          <Switch
-            :checked="checkedCapitalLetters"
-            @change="handleChangeCheckedCapitalLetters"
-          /><Typography type="body" text="Should it have capital letters?" />
-        </div>
-        <div class="switch-group">
-          <Switch
-            :checked="checkedLowercaseLetters"
-            @change="handleChangeCheckedLowercaseLetters"
-          /><Typography type="body" text="Should it have lowercase letters?" />
-        </div>
-        <div class="switch-group">
-          <Switch
-            :checked="checkedSpecialChars"
-            @change="handleChangeCheckedSpecialChars"
-          /><Typography
+        <section class="options-section">
+          <Typography
             type="body"
-            text="Must have special characters? (!.@[])"
+            text="Fill in the information below and click generate password:"
+            id="right-caption"
           />
-        </div>
-        <Button text="Generate Password(s)" @click="undefined" />
-      </section>
-    </div>
-  </main>
+          <div class="switch-group">
+            <InputNumber
+              :min-value="1"
+              :max-value="3"
+              v-model:value="numberPasswordsValue"
+              @change="handleChangeNumberPasswords"
+            />
+            <Typography type="body" text="Number of Passwords" />
+          </div>
+          <div class="switch-group">
+            <Switch
+              :checked="checkedCapitalLetters"
+              @change="handleChangeCheckedCapitalLetters"
+            /><Typography type="body" text="Should it have capital letters?" />
+          </div>
+          <div class="switch-group">
+            <Switch
+              :checked="checkedLowercaseLetters"
+              @change="handleChangeCheckedLowercaseLetters"
+            /><Typography
+              type="body"
+              text="Should it have lowercase letters?"
+            />
+          </div>
+          <div class="switch-group">
+            <Switch
+              :checked="checkedSpecialChars"
+              @change="handleChangeCheckedSpecialChars"
+            /><Typography
+              type="body"
+              text="Must have special characters? (!.@[])"
+            />
+          </div>
+          <Button text="Generate Password(s)" @click="undefined" />
+          <Textarea :value="generatedPassoword" />
+        </section>
+      </div>
+    </main>
+  </div>
+  <Footer />
 </template>
 
 <script lang="ts">
@@ -72,6 +79,7 @@ export default {
       checkedCapitalLetters: true,
       checkedLowercaseLetters: true,
       checkedSpecialChars: true,
+      generatedPassoword: "",
     };
   },
   setup() {
@@ -102,20 +110,24 @@ export default {
 <style lang="less">
 @import "@/assets/variables.less";
 
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vh;
+}
+
 .content {
-  align-items: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100%;
-  justify-content: center;
-  position: fixed;
+  height: calc(100vh - 140px);
+  margin: 70px 0;
   width: 100%;
 }
 
 .left-content {
   align-items: flex-start;
   background-color: @text-color;
-  background-size: cover;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -135,12 +147,11 @@ export default {
 
 .right-content {
   align-items: center;
-  background-color: @background-color;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 100%;
   justify-content: center;
+  overflow: hidden;
   width: 100%;
 }
 
@@ -151,6 +162,10 @@ export default {
 
 #right-caption {
   width: 396px;
+}
+
+.password-illustration {
+  width: 320px;
 }
 
 .options-section {
