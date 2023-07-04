@@ -27,40 +27,10 @@
             text="Fill in the information below and click generate password:"
             id="right-caption"
           />
-          <div class="switch-group">
-            <InputNumber
-              :min-value="1"
-              :max-value="3"
-              v-model:value="numberPasswordsValue"
-              @change="handleChangeNumberPasswords"
-            />
-            <Typography type="body" text="Number of Passwords" />
-          </div>
-          <div class="switch-group">
-            <Switch
-              :checked="checkedCapitalLetters"
-              @change="handleChangeCheckedCapitalLetters"
-            /><Typography type="body" text="Should it have capital letters?" />
-          </div>
-          <div class="switch-group">
-            <Switch
-              :checked="checkedLowercaseLetters"
-              @change="handleChangeCheckedLowercaseLetters"
-            /><Typography
-              type="body"
-              text="Should it have lowercase letters?"
-            />
-          </div>
-          <div class="switch-group">
-            <Switch
-              :checked="checkedSpecialChars"
-              @change="handleChangeCheckedSpecialChars"
-            /><Typography
-              type="body"
-              text="Must have special characters? (!.@[])"
-            />
-          </div>
-          <Button text="Generate Password(s)" @click="undefined" />
+          <Button
+            text="Generate Password(s)"
+            @click="onClickGeneratePassword()"
+          />
           <Textarea :value="generatedPassoword" />
         </section>
       </div>
@@ -70,38 +40,19 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import generatePassword from "@/utils/generatePassword";
 
 export default {
   name: "index",
   data() {
     return {
-      checkedCapitalLetters: true,
-      checkedLowercaseLetters: true,
-      checkedSpecialChars: true,
       generatedPassoword: "",
-    };
-  },
-  setup() {
-    const numberPasswordsValue = ref<number>(1);
-    const handleChangeNumberPasswords = (value: number) => {
-      numberPasswordsValue.value = value;
-    };
-
-    return {
-      numberPasswordsValue,
-      handleChangeNumberPasswords,
+      error: "",
     };
   },
   methods: {
-    handleChangeCheckedCapitalLetters() {
-      this.checkedCapitalLetters = !this.checkedCapitalLetters;
-    },
-    handleChangeCheckedLowercaseLetters() {
-      this.checkedLowercaseLetters = !this.checkedLowercaseLetters;
-    },
-    handleChangeCheckedSpecialChars() {
-      this.checkedSpecialChars = !this.checkedSpecialChars;
+    onClickGeneratePassword() {
+      this.generatedPassoword = generatePassword();
     },
   },
 };

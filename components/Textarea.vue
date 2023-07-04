@@ -28,7 +28,7 @@ export default {
 .textarea {
   border: 1px solid @light-gray;
   color: @text-color;
-  height: 60px;
+  height: 44px;
   width: 320px;
 
   ::placeholder {

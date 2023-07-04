@@ -15,10 +15,6 @@ export default {
       type: Boolean,
       required: true,
     },
-    checkedState: {
-      type: String,
-      required: false,
-    },
   },
   computed: {
     checkedState() {
