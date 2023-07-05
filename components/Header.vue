@@ -2,14 +2,25 @@
   <div class="container">
     <img src="/img/logo-black-horizontal.png" class="logo" width="120" />
     <div class="navigation">
-      <p type="body" class="navigation-text">Donate</p>
+      <NuxtLink to="https://github.com/engfernandes" target="_blank">
+        <github-outlined class="icon" />
+      </NuxtLink>
+      <NuxtLink to="https://www.linkedin.com/in/engfernandes/" target="_blank">
+        <linkedin-outlined class="icon" />
+      </NuxtLink>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { GithubOutlined, LinkedinOutlined } from "@ant-design/icons-vue";
+
 export default {
   name: "Header",
+  components: {
+    "github-outlined": GithubOutlined,
+    "linkedin-outlined": LinkedinOutlined,
+  },
 };
 </script>
 
@@ -23,7 +34,7 @@ export default {
   display: flex;
   height: 70px;
   justify-content: space-between;
-  padding: 16px;
+  padding: 32px;
   position: fixed;
   top: 0%;
   width: 100%;
@@ -33,11 +44,17 @@ export default {
   }
 }
 
-.navigation-text {
-  font-size: 14px;
-  margin: 0;
+.navigation {
+  align-items: center;
+  display: flex;
+  gap: 16px;
 }
-.navigation-text:hover {
+
+.icon {
+  font-size: 20px;
+}
+
+.icon:hover {
   color: @primary-color;
   cursor: pointer;
 }

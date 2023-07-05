@@ -1,5 +1,10 @@
 <template>
-  <a-input :value="value" :placeholder="placeholder" class="textarea" />
+  <a-input
+    :value="value"
+    :placeholder="placeholder"
+    class="textarea"
+    readonly
+  />
 </template>
 
 <script lang="ts">
