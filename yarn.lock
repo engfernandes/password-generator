@@ -4405,7 +4405,7 @@ nuxi@3.6.1:
 
 nuxt@^3.6.1:
   version "3.6.1"
-  resolved "https://registry.npmjs.org/nuxt/-/nuxt-3.6.1.tgz"
+  resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.6.1.tgz#e2ab273cbda7a69177e03f228f355c3a6411c805"
   integrity sha512-IznN+nogCvDuI3IpjXSphdcGBTEeAdpG1iv01inXMWUAeViXhx6FpfPJ2BjQ1WBuahwcUkV2xmMhB3gsv3SLhw==
   dependencies:
     "@nuxt/devalue" "^2.0.2"
